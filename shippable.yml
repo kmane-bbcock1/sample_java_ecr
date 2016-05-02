@@ -8,11 +8,11 @@ jdk:
 
 build:
   pre_ci:
-    - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:test .
+    - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:te&st .
 
   pre_ci_boot:
     image_name: 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region
-    image_tag: test
+    image_tag: te&st
     pull: false
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
@@ -22,7 +22,7 @@ build:
 
   post_ci:
     #- docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
-    - docker push 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:test
+    - docker push 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:te&st
     
 integrations:
   hub:
