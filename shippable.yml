@@ -7,13 +7,13 @@ jdk:
    #- oraclejdk8
 
 build:
-  pre_ci:
-    - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:tag2-m .
+  #pre_ci:
+  #  - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:tag2-m .
 
   pre_ci_boot:
-    image_name: 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region
-    image_tag: :tag2-m
-    pull: false
+    image_name: drydock/u12jav
+    image_tag: prod
+    pull: true
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
@@ -22,7 +22,8 @@ build:
 
   post_ci:
     #- docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
-    - docker push 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region::tag2-m
+    - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:$BRANCH.$BUILD_NUMBER .
+    - docker push 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:$BRANCH.$BUILD_NUMBER
     
 integrations:
   hub:
